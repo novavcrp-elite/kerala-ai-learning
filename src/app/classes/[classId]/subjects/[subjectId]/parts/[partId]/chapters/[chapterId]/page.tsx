@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { keralaBoardData } from "@/data/kerala-board-data";
+import { useMedium } from "@/contexts/MediumContext";
 import {
   ChevronRight,
   BookOpen,
@@ -18,6 +19,8 @@ export default function ChapterPage() {
   const subjectCode = String(params.subjectId);
   const partId = Number(params.partId);
   const chapterId = Number(params.chapterId);
+  const { medium } = useMedium();
+  const isMl = medium === "ml";
 
   const classData = keralaBoardData.find((c) => c.number === classId);
   const subject = classData?.subjects.find((s) => s.code === subjectCode);
@@ -29,13 +32,13 @@ export default function ChapterPage() {
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-900 mb-4">
-            Chapter Not Found
+            {isMl ? "അധ്യായം കണ്ടെത്തിയില്ല" : "Chapter Not Found"}
           </h1>
           <Link
             href={`/classes/${classId}/subjects/${subjectCode}`}
             className="text-blue-600 hover:text-blue-700 font-medium"
           >
-            ← Back to {subject?.name || "Subject"}
+            ← {isMl ? "തിരികെ" : "Back to"} {isMl ? subject?.nameMl : subject?.name}
           </Link>
         </div>
       </div>
@@ -47,40 +50,40 @@ export default function ChapterPage() {
   const learningModes = [
     {
       icon: "📖",
-      title: "Read Chapter",
-      description: `Read the complete chapter content from ${subject.name} Part ${part.partNumber}`,
+      title: isMl ? "അധ്യായം വായിക്കുക" : "Read Chapter",
+      description: isMl ? `${subject?.nameMl} ${part.titleMl} യിൽ നിന്നുള്ള പൂർണ്ണ അധ്യായ ഉള്ളടക്കം` : `Read the complete chapter content from ${subject?.name} Part ${part.partNumber}`,
       href: basePath,
       color: "bg-blue-50 hover:bg-blue-100 border-blue-200",
       textColor: "text-blue-700",
     },
     {
       icon: "🧠",
-      title: "Learn with AI",
-      description: "Get AI-powered summaries, key points, and explanations",
+      title: isMl ? "AI യോടൊപ്പം പഠിക്കുക" : "Learn with AI",
+      description: isMl ? "AI സംഗ്രഹങ്ങൾ, പ്രധാന പോയിന്റുകൾ, വിശദീകരണങ്ങൾ നേടുക" : "Get AI-powered summaries, key points, and explanations",
       href: `${basePath}/learn`,
       color: "bg-purple-50 hover:bg-purple-100 border-purple-200",
       textColor: "text-purple-700",
     },
     {
       icon: "📝",
-      title: "Generate Questions",
-      description: "Create chapter-wise questions with MCQ, short & long answers",
+      title: isMl ? "ചോദ്യങ്ങൾ സൃഷ്ടിക്കുക" : "Generate Questions",
+      description: isMl ? "MCQ, ചെറുത്തുത്തരം, ദീർഘോത്തരം എന്നിവയിൽ അധ്യായ ചോദ്യങ്ങൾ" : "Create chapter-wise questions with MCQ, short & long answers",
       href: `${basePath}/questions`,
       color: "bg-orange-50 hover:bg-orange-100 border-orange-200",
       textColor: "text-orange-700",
     },
     {
       icon: "🎯",
-      title: "Practice Quiz",
-      description: "Test your knowledge with interactive quizzes",
+      title: isMl ? "പ്രാക്ടീസ് ക്വിസ്" : "Practice Quiz",
+      description: isMl ? "ഇന്ററാക്ടീവ് ക്വിസുകളിലൂടെ നിങ്ങളുടെ അറിവ് പരിശോധിക്കുക" : "Test your knowledge with interactive quizzes",
       href: `${basePath}/quiz`,
       color: "bg-green-50 hover:bg-green-100 border-green-200",
       textColor: "text-green-700",
     },
     {
       icon: "💡",
-      title: "Ask AI",
-      description: "Ask any question about this chapter",
+      title: isMl ? "AI യോട് ചോദിക്കുക" : "Ask AI",
+      description: isMl ? "ഈ അധ്യായത്തെക്കുറിച്ച് ഏതും ചോദിക്കുക" : "Ask any question about this chapter",
       href: `/ask-ai?classId=${classId}&subjectCode=${subjectCode}&chapterId=${chapterId}`,
       color: "bg-teal-50 hover:bg-teal-100 border-teal-200",
       textColor: "text-teal-700",
@@ -93,49 +96,55 @@ export default function ChapterPage() {
         {/* Breadcrumb */}
         <div className="flex flex-wrap items-center gap-2 text-sm text-gray-600 mb-8">
           <Link href="/classes" className="hover:text-blue-600">
-            Classes
+            {isMl ? "ക്ലാസുകൾ" : "Classes"}
           </Link>
           <ChevronRight className="w-4 h-4" />
           <Link href={`/classes/${classId}`} className="hover:text-blue-600">
-            Class {classId}
+            {isMl ? `ക്ലാസ് ${classId}` : `Class ${classId}`}
           </Link>
           <ChevronRight className="w-4 h-4" />
           <Link
             href={`/classes/${classId}/subjects/${subjectCode}`}
             className="hover:text-blue-600"
           >
-            {subject.name}
+            {isMl ? subject.nameMl : subject.name}
           </Link>
           <ChevronRight className="w-4 h-4" />
           <Link
             href={`/classes/${classId}/subjects/${subjectCode}/parts/${partId}`}
             className="hover:text-blue-600"
           >
-            Part {part.partNumber}
+            {isMl ? part.titleMl : part.title}
           </Link>
           <ChevronRight className="w-4 h-4" />
-          <span className="text-gray-900 font-medium">Ch {chapter.chapterNumber}</span>
+          <span className="text-gray-900 font-medium">
+            {isMl ? `അധ്യായം ${chapter.chapterNumber}` : `Ch ${chapter.chapterNumber}`}
+          </span>
         </div>
 
         {/* Chapter Header */}
         <div className="bg-white rounded-2xl border border-gray-200 p-8 mb-8">
           <div className="flex items-center gap-2 mb-3">
             <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2.5 py-1 rounded-full">
-              Chapter {chapter.chapterNumber}
+              {isMl ? `അധ്യായം ${chapter.chapterNumber}` : `Chapter ${chapter.chapterNumber}`}
             </span>
             <span className="text-xs text-gray-400">
-              {subject.name} · Part {part.partNumber}
+              {isMl ? subject.nameMl : subject.name} · {isMl ? part.titleMl : part.title}
             </span>
           </div>
           <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-            {chapter.title}
+            {isMl ? chapter.titleMl : chapter.title}
           </h1>
-          {chapter.titleMl && (
-            <p className="text-lg text-gray-500">{chapter.titleMl}</p>
+          {isMl ? (
+            <p className="text-lg text-gray-500">{chapter.title}</p>
+          ) : (
+            chapter.titleMl && (
+              <p className="text-lg text-gray-500">{chapter.titleMl}</p>
+            )
           )}
           {chapter.pageStart && chapter.pageEnd && (
             <p className="text-sm text-gray-400 mt-2">
-              📄 Pages {chapter.pageStart} - {chapter.pageEnd}
+              📄 {isMl ? `പേജുകൾ ${chapter.pageStart} - ${chapter.pageEnd}` : `Pages ${chapter.pageStart} - ${chapter.pageEnd}`}
             </p>
           )}
 
@@ -143,7 +152,7 @@ export default function ChapterPage() {
           {chapter.headings.length > 0 && (
             <div className="mt-4 pt-4 border-t border-gray-100">
               <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
-                Topics Covered
+                {isMl ? "ഉൾക്കൊള്ളുന്ന വിഷയങ്ങൾ" : "Topics Covered"}
               </p>
               <div className="flex flex-wrap gap-2">
                 {chapter.headings.map((heading, i) => (
@@ -162,7 +171,7 @@ export default function ChapterPage() {
         {/* Learning Modes */}
         <div className="mb-8">
           <h2 className="text-xl font-bold text-gray-900 mb-4">
-            Choose Your Learning Mode
+            {isMl ? "നിങ്ങളുടെ പഠന രീതി തിരഞ്ഞെടുക്കുക" : "Choose Your Learning Mode"}
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {learningModes.map((mode, index) => (
@@ -190,12 +199,14 @@ export default function ChapterPage() {
         {/* Chapter Content Preview */}
         <div className="bg-white rounded-2xl border border-gray-200 p-8">
           <h2 className="text-xl font-bold text-gray-900 mb-4">
-            📖 Chapter Content
+            📖 {isMl ? "അധ്യായ ഉള്ളടക്കം" : "Chapter Content"}
           </h2>
           <div className="prose prose-gray max-w-none">
             <p className="text-gray-600 leading-relaxed">
-              This chapter covers the following important topics from the Kerala State Board{" "}
-              {subject.name} textbook for Class {classId}:
+              {isMl
+                ? `ഈ അധ്യായം കേരള സ്റ്റേറ്റ് ബോർഡ് ${subject.nameMl} പാഠപുസ്തകത്തിൽ നിന്നുള്ള താഴെ പറയുന്ന പ്രധാന വിഷയങ്ങൾ ഉൾക്കൊള്ളുന്നു:`
+                : `This chapter covers the following important topics from the Kerala State Board ${subject.name} textbook for Class ${classId}:`
+              }
             </p>
             <ul className="list-disc list-inside text-gray-600 mt-4 space-y-2">
               {chapter.headings.map((heading, i) => (
@@ -203,8 +214,10 @@ export default function ChapterPage() {
               ))}
             </ul>
             <p className="text-gray-600 mt-4">
-              Use the learning modes above to study this chapter with AI assistance,
-              practice quizzes, or generate question papers.
+              {isMl
+                ? "AI സഹായത്തോടെ ഈ അധ്യായം പഠിക്കാനോ, ക്വിസുകൾ പ്രാക്ടീസ് ചെയ്യാനോ, ചോദ്യപേപ്പറുകൾ സൃഷ്ടിക്കാനോ മുകളിലെ പഠന രീതികൾ ഉപയോഗിക്കുക."
+                : "Use the learning modes above to study this chapter with AI assistance, practice quizzes, or generate question papers."
+              }
             </p>
           </div>
 
@@ -215,7 +228,7 @@ export default function ChapterPage() {
                 href={`${basePath.split("/").slice(0, -1).join("/")}/${chapter.chapterNumber - 1}`}
                 className="text-sm text-blue-600 hover:text-blue-700"
               >
-                ← Chapter {chapter.chapterNumber - 1}
+                ← {isMl ? `അധ്യായം ${chapter.chapterNumber - 1}` : `Chapter ${chapter.chapterNumber - 1}`}
               </Link>
             ) : (
               <div />
@@ -226,7 +239,7 @@ export default function ChapterPage() {
                 href={`${basePath.split("/").slice(0, -1).join("/")}/${chapter.chapterNumber + 1}`}
                 className="text-sm text-blue-600 hover:text-blue-700"
               >
-                Chapter {chapter.chapterNumber + 1} →
+                {isMl ? `അധ്യായം ${chapter.chapterNumber + 1}` : `Chapter ${chapter.chapterNumber + 1}`} →
               </Link>
             ) : (
               <div />

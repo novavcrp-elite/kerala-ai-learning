@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { keralaBoardData } from "@/data/kerala-board-data";
+import { useMedium } from "@/contexts/MediumContext";
 import { BookOpen, ChevronRight, ArrowLeft, FileText, Hash } from "lucide-react";
 
 const classColors: Record<number, string> = {
@@ -22,6 +23,8 @@ export default function ClassPage() {
   const params = useParams();
   const classId = Number(params.classId);
   const classData = keralaBoardData.find((c) => c.number === classId);
+  const { medium } = useMedium();
+  const isMl = medium === "ml";
 
   if (!classData) {
     return (
@@ -51,7 +54,7 @@ export default function ClassPage() {
             className="inline-flex items-center text-sm text-gray-600 hover:text-blue-600 transition-colors"
           >
             <ArrowLeft className="w-4 h-4 mr-1" />
-            All Classes
+            {isMl ? "എല്ലാ ക്ലാസുകളും" : "All Classes"}
           </Link>
         </div>
 
@@ -71,13 +74,13 @@ export default function ClassPage() {
             </div>
           </div>
           <p className="text-sm text-gray-500 mt-2">
-            {classData.subjects.length} subjects ·{" "}
+            {classData.subjects.length} {isMl ? "വിഷയങ്ങൾ" : "subjects"} ·{" "}
             {classData.subjects.reduce(
               (acc, s) =>
                 acc + s.parts.reduce((pa, p) => pa + p.chapters.length, 0),
               0
             )}{" "}
-            total chapters
+            {isMl ? "ആകെ അധ്യായങ്ങൾ" : "total chapters"}
           </p>
         </div>
 
@@ -101,16 +104,20 @@ export default function ClassPage() {
                       <div className="flex items-center gap-2 mb-2">
                         <BookOpen className="w-5 h-5 text-blue-600" />
                         <h2 className="text-xl font-bold text-gray-900">
-                          {subject.name}
+                          {isMl ? subject.nameMl : subject.name}
                         </h2>
                       </div>
-                      {subject.nameMl && (
-                        <p className="text-sm text-gray-500 ml-7">
-                          {subject.nameMl}
-                        </p>
+                      {isMl ? (
+                        <p className="text-sm text-gray-500 ml-7">{subject.name}</p>
+                      ) : (
+                        subject.nameMl && (
+                          <p className="text-sm text-gray-500 ml-7">
+                            {subject.nameMl}
+                          </p>
+                        )
                       )}
                       <p className="text-xs text-gray-400 mt-1 ml-7">
-                        Code: {subject.code}
+                        {isMl ? "കോഡ്" : "Code"}: {subject.code}
                       </p>
                     </div>
                   </div>
@@ -118,11 +125,11 @@ export default function ClassPage() {
                   <div className="flex items-center gap-4 mt-4 text-sm text-gray-600">
                     <span className="flex items-center gap-1">
                       <FileText className="w-4 h-4" />
-                      {totalParts} {totalParts === 1 ? "Part" : "Parts"}
+                      {totalParts} {totalParts === 1 ? (isMl ? "ഭാഗം" : "Part") : (isMl ? "ഭാഗങ്ങൾ" : "Parts")}
                     </span>
                     <span className="flex items-center gap-1">
                       <Hash className="w-4 h-4" />
-                      {totalChapters} Chapters
+                      {totalChapters} {isMl ? "അധ്യായങ്ങൾ" : "Chapters"}
                     </span>
                   </div>
 
@@ -131,9 +138,12 @@ export default function ClassPage() {
                     {subject.parts.map((part) => (
                       <div key={part.partNumber}>
                         <p className="text-xs font-medium text-gray-500 uppercase tracking-wider mb-2">
-                          {part.title}{" "}
-                          {part.titleMl && (
+                          {isMl ? part.titleMl : part.title}{" "}
+                          {!isMl && part.titleMl && (
                             <span className="normal-case">({part.titleMl})</span>
+                          )}
+                          {isMl && (
+                            <span className="normal-case"> ({part.title})</span>
                           )}
                         </p>
                         <div className="flex flex-wrap gap-1.5">
@@ -143,7 +153,7 @@ export default function ClassPage() {
                               href={`/classes/${classId}/subjects/${subject.code}/parts/${part.partNumber}/chapters/${chapter.chapterNumber}`}
                               className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-gray-50 text-gray-700 hover:bg-blue-50 hover:text-blue-700 border border-gray-200 hover:border-blue-300 transition-all"
                             >
-                              Ch {chapter.chapterNumber}: {chapter.title}
+                              {isMl ? `അധ്യായം ${chapter.chapterNumber}` : `Ch ${chapter.chapterNumber}`}: {isMl ? chapter.titleMl : chapter.title}
                             </Link>
                           ))}
                         </div>
@@ -158,7 +168,7 @@ export default function ClassPage() {
                     href={`/classes/${classId}/subjects/${subject.code}`}
                     className="text-sm font-medium text-blue-600 hover:text-blue-700 flex items-center"
                   >
-                    View all {totalChapters} chapters
+                    {isMl ? `എല്ലാ ${totalChapters} അധ്യായങ്ങളും കാണുക` : `View all ${totalChapters} chapters`}
                     <ChevronRight className="w-4 h-4 ml-1" />
                   </Link>
                 </div>

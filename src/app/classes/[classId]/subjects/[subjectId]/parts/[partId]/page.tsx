@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { keralaBoardData } from "@/data/kerala-board-data";
+import { useMedium } from "@/contexts/MediumContext";
 import {
   ChevronRight,
   BookOpen,
@@ -14,6 +15,8 @@ export default function PartPage() {
   const classId = Number(params.classId);
   const subjectCode = String(params.subjectId);
   const partId = Number(params.partId);
+  const { medium } = useMedium();
+  const isMl = medium === "ml";
 
   const classData = keralaBoardData.find((c) => c.number === classId);
   const subject = classData?.subjects.find((s) => s.code === subjectCode);
@@ -23,9 +26,9 @@ export default function PartPage() {
     return (
       <div className="min-h-screen bg-gray-50 flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 mb-4">Part Not Found</h1>
+          <h1 className="text-2xl font-bold text-gray-900 mb-4">{isMl ? "ഭാഗം കണ്ടെത്തിയില്ല" : "Part Not Found"}</h1>
           <Link href={`/classes/${classId}/subjects/${subjectCode}`} className="text-blue-600 font-medium">
-            ← Back to {subject?.name || "Subject"}
+            ← {isMl ? "തിരികെ" : "Back to"} {isMl ? subject?.nameMl : subject?.name}
           </Link>
         </div>
       </div>
@@ -37,21 +40,21 @@ export default function PartPage() {
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-8">
-          <Link href="/classes" className="hover:text-blue-600">Classes</Link>
+          <Link href="/classes" className="hover:text-blue-600">{isMl ? "ക്ലാസുകൾ" : "Classes"}</Link>
           <ChevronRight className="w-4 h-4" />
-          <Link href={`/classes/${classId}`} className="hover:text-blue-600">Class {classId}</Link>
+          <Link href={`/classes/${classId}`} className="hover:text-blue-600">{isMl ? `ക്ലാസ് ${classId}` : `Class ${classId}`}</Link>
           <ChevronRight className="w-4 h-4" />
           <Link href={`/classes/${classId}/subjects/${subjectCode}`} className="hover:text-blue-600">
-            {subject.name}
+            {isMl ? subject.nameMl : subject.name}
           </Link>
           <ChevronRight className="w-4 h-4" />
-          <span className="text-gray-900 font-medium">{part.title}</span>
+          <span className="text-gray-900 font-medium">{isMl ? part.titleMl : part.title}</span>
         </div>
 
         <h1 className="text-2xl font-bold text-gray-900 mb-1">
-          {subject.name} - {part.title}
+          {isMl ? subject.nameMl : subject.name} - {isMl ? part.titleMl : part.title}
         </h1>
-        <p className="text-gray-500 mb-8">{part.titleMl}</p>
+        <p className="text-gray-500 mb-8">{isMl ? part.title : part.titleMl}</p>
 
         <div className="space-y-3">
           {part.chapters.map((chapter) => (
@@ -66,9 +69,12 @@ export default function PartPage() {
                 </span>
               </div>
               <div className="flex-1">
-                <h3 className="font-semibold text-gray-900">{chapter.title}</h3>
-                {chapter.titleMl && (
+                <h3 className="font-semibold text-gray-900">{isMl ? chapter.titleMl : chapter.title}</h3>
+                {!isMl && chapter.titleMl && (
                   <p className="text-sm text-gray-500">{chapter.titleMl}</p>
+                )}
+                {isMl && (
+                  <p className="text-sm text-gray-500">{chapter.title}</p>
                 )}
                 <div className="flex flex-wrap gap-1.5 mt-2">
                   {chapter.headings.slice(0, 3).map((h, i) => (
@@ -78,7 +84,7 @@ export default function PartPage() {
                   ))}
                   {chapter.headings.length > 3 && (
                     <span className="text-xs text-gray-400">
-                      +{chapter.headings.length - 3} more
+                      +{chapter.headings.length - 3} {isMl ? "കൂടുതൽ" : "more"}
                     </span>
                   )}
                 </div>

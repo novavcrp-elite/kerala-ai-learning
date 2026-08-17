@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { keralaBoardData } from "@/data/kerala-board-data";
+import { useMedium } from "@/contexts/MediumContext";
 import {
   ChevronRight,
   Target,
@@ -29,6 +30,7 @@ export default function QuizPage() {
   const subjectCode = String(params.subjectId);
   const partId = Number(params.partId);
   const chapterId = Number(params.chapterId);
+  const { medium } = useMedium();
 
   const classData = keralaBoardData.find((c) => c.number === classId);
   const subject = classData?.subjects.find((s) => s.code === subjectCode);
@@ -147,7 +149,7 @@ export default function QuizPage() {
               <div>
                 <h1 className="text-2xl font-bold text-gray-900">Practice Quiz</h1>
                 <p className="text-sm text-gray-500">
-                  Ch {chapter.chapterNumber}: {chapter.title}
+                  {medium === "ml" ? `അധ്യായം ${chapter.chapterNumber}: ${chapter.titleMl}` : `Ch ${chapter.chapterNumber}: ${chapter.title}`}
                 </p>
               </div>
             </div>

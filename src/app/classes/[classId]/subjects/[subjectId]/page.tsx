@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useParams } from "next/navigation";
 import { keralaBoardData } from "@/data/kerala-board-data";
+import { useMedium } from "@/contexts/MediumContext";
 import {
   BookOpen,
   ChevronRight,
@@ -15,6 +16,8 @@ export default function SubjectPage() {
   const params = useParams();
   const classId = Number(params.classId);
   const subjectCode = String(params.subjectId);
+  const { medium } = useMedium();
+  const isMl = medium === "ml";
 
   const classData = keralaBoardData.find((c) => c.number === classId);
   const subject = classData?.subjects.find((s) => s.code === subjectCode);
@@ -43,24 +46,32 @@ export default function SubjectPage() {
         {/* Breadcrumb */}
         <div className="flex items-center gap-2 text-sm text-gray-600 mb-8">
           <Link href="/classes" className="hover:text-blue-600">
-            Classes
+            {isMl ? "ക്ലാസുകൾ" : "Classes"}
           </Link>
           <ChevronRight className="w-4 h-4" />
           <Link href={`/classes/${classId}`} className="hover:text-blue-600">
-            Class {classId}
+            {isMl ? `ക്ലാസ് ${classId}` : `Class ${classId}`}
           </Link>
           <ChevronRight className="w-4 h-4" />
-          <span className="text-gray-900 font-medium">{subject.name}</span>
+          <span className="text-gray-900 font-medium">
+            {isMl ? subject.nameMl : subject.name}
+          </span>
         </div>
 
         {/* Header */}
         <div className="mb-10">
           <div className="flex items-center gap-3 mb-3">
             <BookOpen className="w-7 h-7 text-blue-600" />
-            <h1 className="text-3xl font-bold text-gray-900">{subject.name}</h1>
+            <h1 className="text-3xl font-bold text-gray-900">
+              {isMl ? subject.nameMl : subject.name}
+            </h1>
           </div>
-          {subject.nameMl && (
-            <p className="text-lg text-gray-500 ml-10">{subject.nameMl}</p>
+          {isMl ? (
+            <p className="text-lg text-gray-500 ml-10">{subject.name}</p>
+          ) : (
+            subject.nameMl && (
+              <p className="text-lg text-gray-500 ml-10">{subject.nameMl}</p>
+            )
           )}
         </div>
 
@@ -75,10 +86,14 @@ export default function SubjectPage() {
               </div>
               <div>
                 <h2 className="text-xl font-bold text-gray-900">
-                  {part.title}
+                  {isMl ? part.titleMl : part.title}
                 </h2>
-                {part.titleMl && (
-                  <p className="text-sm text-gray-500">{part.titleMl}</p>
+                {isMl ? (
+                  <p className="text-sm text-gray-500">{part.title}</p>
+                ) : (
+                  part.titleMl && (
+                    <p className="text-sm text-gray-500">{part.titleMl}</p>
+                  )
                 )}
               </div>
             </div>
@@ -93,22 +108,28 @@ export default function SubjectPage() {
                     <div className="flex-1">
                       <div className="flex items-center gap-2">
                         <span className="text-xs font-medium text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
-                          Chapter {chapter.chapterNumber}
+                          {isMl ? `അധ്യായം ${chapter.chapterNumber}` : `Chapter ${chapter.chapterNumber}`}
                         </span>
                         {chapter.pageStart && chapter.pageEnd && (
                           <span className="text-xs text-gray-400 flex items-center gap-1">
                             <Clock className="w-3 h-3" />
-                            Pages {chapter.pageStart}-{chapter.pageEnd}
+                            {isMl ? `പേജുകൾ ${chapter.pageStart}-${chapter.pageEnd}` : `Pages ${chapter.pageStart}-${chapter.pageEnd}`}
                           </span>
                         )}
                       </div>
                       <h3 className="text-lg font-semibold text-gray-900 mt-2">
-                        {chapter.title}
+                        {isMl ? chapter.titleMl : chapter.title}
                       </h3>
-                      {chapter.titleMl && (
+                      {isMl ? (
                         <p className="text-sm text-gray-500 mt-0.5">
-                          {chapter.titleMl}
+                          {chapter.title}
                         </p>
+                      ) : (
+                        chapter.titleMl && (
+                          <p className="text-sm text-gray-500 mt-0.5">
+                            {chapter.titleMl}
+                          </p>
+                        )
                       )}
                       {chapter.headings.length > 0 && (
                         <div className="flex flex-wrap gap-1.5 mt-3">
@@ -132,25 +153,25 @@ export default function SubjectPage() {
                       className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-blue-50 text-blue-700 hover:bg-blue-100 transition-colors"
                     >
                       <BookOpen className="w-3.5 h-3.5 mr-1" />
-                      Read Chapter
+                      {isMl ? "അധ്യായം വായിക്കുക" : "Read Chapter"}
                     </Link>
                     <Link
                       href={`/classes/${classId}/subjects/${subjectCode}/parts/${part.partNumber}/chapters/${chapter.chapterNumber}/learn`}
                       className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-purple-50 text-purple-700 hover:bg-purple-100 transition-colors"
                     >
-                      🧠 Learn with AI
+                      🧠 {isMl ? "AI യോടൊപ്പം പഠിക്കുക" : "Learn with AI"}
                     </Link>
                     <Link
                       href={`/classes/${classId}/subjects/${subjectCode}/parts/${part.partNumber}/chapters/${chapter.chapterNumber}/quiz`}
                       className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-green-50 text-green-700 hover:bg-green-100 transition-colors"
                     >
-                      🎯 Practice Quiz
+                      🎯 {isMl ? "പ്രാക്ടീസ് ക്വിസ്" : "Practice Quiz"}
                     </Link>
                     <Link
                       href={`/classes/${classId}/subjects/${subjectCode}/parts/${part.partNumber}/chapters/${chapter.chapterNumber}/questions`}
                       className="inline-flex items-center px-3 py-1.5 rounded-lg text-xs font-medium bg-orange-50 text-orange-700 hover:bg-orange-100 transition-colors"
                     >
-                      📝 Questions
+                      📝 {isMl ? "ചോദ്യങ്ങൾ" : "Questions"}
                     </Link>
                   </div>
                 </div>

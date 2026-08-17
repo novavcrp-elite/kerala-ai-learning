@@ -4,6 +4,7 @@ import { useParams } from "next/navigation";
 import Link from "next/link";
 import { useState } from "react";
 import { keralaBoardData } from "@/data/kerala-board-data";
+import { useMedium } from "@/contexts/MediumContext";
 import { ChevronRight, ArrowLeft, Brain, Send, Loader2, BookOpen } from "lucide-react";
 
 const learningModes = [
@@ -56,6 +57,7 @@ export default function LearnPage() {
   const subjectCode = String(params.subjectId);
   const partId = Number(params.partId);
   const chapterId = Number(params.chapterId);
+  const { medium } = useMedium();
 
   const classData = keralaBoardData.find((c) => c.number === classId);
   const subject = classData?.subjects.find((s) => s.code === subjectCode);
@@ -202,10 +204,10 @@ export default function LearnPage() {
           <Brain className="w-8 h-8 text-purple-600" />
           <div>
             <h1 className="text-2xl font-bold text-gray-900">
-              Learn with AI
+              {medium === "ml" ? "AI യോടൊപ്പം പഠിക്കുക" : "Learn with AI"}
             </h1>
             <p className="text-sm text-gray-500">
-              {subject.name} · Class {classId} · Ch {chapter.chapterNumber}: {chapter.title}
+              {medium === "ml" ? subject.nameMl : subject.name} · {medium === "ml" ? `ക്ലാസ് ${classId}` : `Class ${classId}`} · {medium === "ml" ? `അധ്യായം ${chapter.chapterNumber}: ${chapter.titleMl}` : `Ch ${chapter.chapterNumber}: ${chapter.title}`}
             </p>
           </div>
         </div>
