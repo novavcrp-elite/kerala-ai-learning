@@ -2,20 +2,12 @@ import type { Metadata } from "next";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { MediumProvider } from "@/contexts/MediumContext";
 
 export const metadata: Metadata = {
-  title: "Kerala AI Learning Helper - Kerala State Board Study Platform",
+  title: "Paddikam - Kerala State Board AI Learning Platform",
   description:
-    "AI-powered learning platform for Kerala State Board students from Class 1 to Class 10. Study with AI, generate questions, practice quizzes, and prepare for exams.",
-  keywords: [
-    "Kerala State Board",
-    "AI Learning",
-    "Study Helper",
-    "Kerala Board",
-    "Class 1-10",
-    "Exam Preparation",
-    "Samagra",
-  ],
+    "AI-powered learning platform for Kerala State Board students from Class 1 to Class 10. Study with AI, generate questions, practice quizzes, and prepare for exams in English or Malayalam medium.",
 };
 
 export default function RootLayout({
@@ -26,9 +18,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col antialiased">
-        <Navbar />
-        <main className="flex-1">{children}</main>
-        <Footer />
+        <MediumProvider>
+          <Navbar />
+          <main className="flex-1">{children}</main>
+          <Footer />
+        </MediumProvider>
       </body>
     </html>
   );

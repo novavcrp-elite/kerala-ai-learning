@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { BookOpen, Menu, X, GraduationCap, Brain, FileText, Shield } from "lucide-react";
+import { MediumSelector } from "./MediumSelector";
 
 export function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +18,7 @@ export function Navbar() {
                 <GraduationCap className="w-5 h-5 text-white" />
               </div>
               <span className="text-lg font-bold text-gray-900">
-                Kerala AI <span className="text-blue-600">Learn</span>
+                Paddikam<span className="text-blue-600">.gg</span>
               </span>
             </Link>
           </div>
@@ -52,10 +53,14 @@ export function Navbar() {
               <Shield className="w-4 h-4 mr-1.5" />
               Admin
             </Link>
+            <div className="ml-2">
+              <MediumSelector />
+            </div>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden flex items-center">
+          <div className="md:hidden flex items-center gap-2">
+            <MediumSelector />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="p-2 rounded-lg text-gray-600 hover:bg-gray-100"

@@ -15,6 +15,7 @@ import {
   Languages,
   Shield,
 } from "lucide-react";
+import { useMedium } from "@/contexts/MediumContext";
 
 interface ClassInfo {
   number: number;
@@ -49,6 +50,7 @@ const classSubjects: Record<number, string[]> = {
 };
 
 export default function HomePage() {
+  const { medium } = useMedium();
   const [selectedClass, setSelectedClass] = useState<number | null>(null);
 
   const features = [
@@ -107,7 +109,7 @@ export default function HomePage() {
               <div className="inline-flex items-center bg-white/20 backdrop-blur-sm rounded-full px-4 py-1.5 mb-6">
                 <Sparkles className="w-4 h-4 text-yellow-300 mr-2" />
                 <span className="text-sm font-medium text-white">
-                  AI-Powered Kerala Board Study Platform
+                  Kerala Board Study Platform
                 </span>
               </div>
               <h1 className="text-4xl md:text-6xl font-bold text-white mb-6">
@@ -116,8 +118,8 @@ export default function HomePage() {
               </h1>
               <p className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-10">
                 Complete Kerala State Board study platform for Classes 1 to 10.
-                Get textbook-aware AI explanations, generate practice questions,
-                and prepare for exams with confidence.
+                Study in {medium === "en" ? "English" : "Malayalam"} medium.
+                Get AI explanations, practice quizzes, and prepare for exams.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
                 <Link
