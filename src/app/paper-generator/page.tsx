@@ -73,6 +73,9 @@ export default function PaperGeneratorPage() {
           chapterMls: selectedChapters.length > 0
             ? allChapters.filter((c) => selectedChapters.includes(c.chapterNumber)).map((c) => c.titleMl)
             : allChapters.map((c) => c.titleMl),
+          chapterNumbers: selectedChapters.length > 0
+            ? selectedChapters
+            : allChapters.map((c) => c.chapterNumber),
           topics: allChapters.flatMap((c) => c.headings),
           totalMarks,
           duration,
