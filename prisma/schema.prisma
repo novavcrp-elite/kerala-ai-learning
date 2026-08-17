@@ -1,0 +1,203 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+model Class {
+  id          Int       @id @default(autoincrement())
+  number      Int       @unique
+  name        String
+  description String?
+  isActive    Boolean   @default(true)
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  subjects          Subject[]
+  markSchemes       MarkScheme[]
+  textbooks         Textbook[]
+  questionPapers    QuestionPaper[]
+}
+
+model Subject {
+  id          Int      @id @default(autoincrement())
+  name        String
+  nameMl      String   @default("")
+  code        String   @unique
+  description String?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  classes      Class[]
+  textbooks    Textbook[]
+  markSchemes  MarkScheme[]
+  questionPapers QuestionPaper[]
+}
+
+model Textbook {
+  id          Int      @id @default(autoincrement())
+  title       String
+  titleMl     String   @default("")
+  classId     Int
+  subjectId   Int
+  partNumber  Int      @default(1)
+  totalParts  Int      @default(1)
+  isbn        String?
+  publisher   String?  @default("Kerala State Board")
+  edition     String?
+  year        Int?
+  sourceUrl   String?
+  sourcePdf   String?
+  isImported  Boolean  @default(false)
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  class          Class          @relation(fields: [classId], references: [id])
+  subject        Subject        @relation(fields: [subjectId], references: [id])
+  parts          TextbookPart[]
+  chapters       Chapter[]
+  questionPapers QuestionPaper[]
+}
+
+model TextbookPart {
+  id          Int      @id @default(autoincrement())
+  textbookId  Int
+  partNumber  Int
+  title       String
+  titleMl     String   @default("")
+  totalPages  Int?
+  isActive    Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  textbook Textbook @relation(fields: [textbookId], references: [id])
+  chapters Chapter[]
+}
+
+model Chapter {
+  id            Int      @id @default(autoincrement())
+  textbookId    Int
+  partId        Int?
+  chapterNumber Int
+  title         String
+  titleMl       String   @default("")
+  content       String   @default("")
+  summary       String   @default("")
+  summaryMl     String   @default("")
+  pageStart     Int?
+  pageEnd       Int?
+  headings      String   @default("[]") // JSON array of heading strings
+  sourcePdf     String?
+  sourceUrl     String?
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  textbook   Textbook      @relation(fields: [textbookId], references: [id])
+  part       TextbookPart? @relation(fields: [partId], references: [id])
+  contents   ChapterContent[]
+  pages      ChapterPage[]
+  questions  Question[]
+}
+
+model ChapterContent {
+  id        Int      @id @default(autoincrement())
+  chapterId Int
+  section   String
+  content   String
+  language  String   @default("en")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  chapter Chapter @relation(fields: [chapterId], references: [id])
+}
+
+model ChapterPage {
+  id         Int      @id @default(autoincrement())
+  chapterId  Int
+  pageNumber Int
+  content    String
+  ocrText    String   @default("")
+  createdAt  DateTime @default(now())
+
+  chapter Chapter @relation(fields: [chapterId], references: [id])
+}
+
+model Question {
+  id            Int      @id @default(autoincrement())
+  chapterId     Int
+  type          String
+  question      String
+  questionMl    String   @default("")
+  answer        String
+  answerMl      String   @default("")
+  options       String   @default("[]") // JSON array of options
+  correctAnswer Int?
+  difficulty    String   @default("medium")
+  marks         Int      @default(1)
+  explanation   String   @default("")
+  explanationMl String   @default("")
+  isActive      Boolean  @default(true)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  chapter Chapter @relation(fields: [chapterId], references: [id])
+}
+
+model MarkScheme {
+  id         Int      @id @default(autoincrement())
+  classId    Int
+  subjectId  Int
+  totalMarks Int
+  duration   Int
+  sections   String   @default("[]") // JSON
+  isActive   Boolean  @default(true)
+  notes      String   @default("")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+
+  class   Class   @relation(fields: [classId], references: [id])
+  subject Subject @relation(fields: [subjectId], references: [id])
+
+  @@unique([classId, subjectId])
+}
+
+model QuestionPaper {
+  id            Int      @id @default(autoincrement())
+  title         String
+  classId       Int
+  subjectId     Int
+  textbookId    Int?
+  totalMarks    Int
+  duration      Int
+  language      String   @default("en")
+  difficulty    String   @default("mixed")
+  chapterIds    String   @default("[]") // JSON array
+  questionTypes String   @default("[]") // JSON array
+  paperContent  String   @default("{}") // JSON
+  answerKey     String   @default("{}") // JSON
+  modelAnswers  String   @default("{}") // JSON
+  isPublic      Boolean  @default(false)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  class    Class    @relation(fields: [classId], references: [id])
+  subject  Subject  @relation(fields: [subjectId], references: [id])
+  textbook Textbook? @relation(fields: [textbookId], references: [id])
+}
+
+model AdminUser {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  name      String
+  role      String   @default("admin")
+  password  String
+  isActive  Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
