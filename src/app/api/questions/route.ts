@@ -94,7 +94,7 @@ IMPORTANT:
           "X-Title": "Paddikam Questions",
         },
         body: JSON.stringify({
-          model: "google/gemini-2.0-flash-001",
+          model: "google/gemini-2.5-flash",
           messages: [
             {
               role: "system",
