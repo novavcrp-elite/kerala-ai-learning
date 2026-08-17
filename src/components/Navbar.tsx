@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { BookOpen, Menu, X, GraduationCap, Brain, FileText, Shield } from "lucide-react";
+import { BookOpen, Menu, X, Brain, FileText, Shield } from "lucide-react";
 import { MediumSelector } from "./MediumSelector";
 
 export function Navbar() {
@@ -14,9 +14,7 @@ export function Navbar() {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-600 to-green-500 flex items-center justify-center">
-                <GraduationCap className="w-5 h-5 text-white" />
-              </div>
+              <img src="/images/logo.png" alt="Paddikam" className="w-9 h-9 rounded-lg object-cover" />
               <span className="text-lg font-bold text-gray-900">
                 Paddikam<span className="text-blue-600">.gg</span>
               </span>

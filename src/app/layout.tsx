@@ -8,6 +8,10 @@ export const metadata: Metadata = {
   title: "Paddikam - Kerala State Board AI Learning Platform",
   description:
     "AI-powered learning platform for Kerala State Board students from Class 1 to Class 10. Study with AI, generate questions, practice quizzes, and prepare for exams in English or Malayalam medium.",
+  icons: {
+    icon: "/favicon.png",
+    apple: "/images/logo.png",
+  },
 };
 
 export default function RootLayout({

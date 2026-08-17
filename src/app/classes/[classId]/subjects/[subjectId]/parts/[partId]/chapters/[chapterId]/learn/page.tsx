@@ -107,13 +107,16 @@ export default function LearnPage() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           message: question,
+          language,
+          classNumber: Number(classId),
+          subjectCode: subject.code,
+          chapterNumber: chapter.chapterNumber,
           context: {
             classId,
             subject: subject.name,
             chapter: chapter.title,
             chapterMl: chapter.titleMl,
             topics: chapter.headings,
-            language,
           },
         }),
       });
@@ -286,9 +289,7 @@ export default function LearnPage() {
                   }`}
                 >
                   {msg.role === "assistant" && (
-                    <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                      <Brain className="w-4 h-4 text-purple-600" />
-                    </div>
+                    <img src="/images/ai-avatar.png" alt="AI" className="w-9 h-9 rounded-full shadow border border-blue-200 flex-shrink-0" />
                   )}
                   <div
                     className={`max-w-[80%] p-4 rounded-xl ${
@@ -306,9 +307,7 @@ export default function LearnPage() {
 
               {loading && (
                 <div className="flex gap-3">
-                  <div className="w-8 h-8 rounded-full bg-purple-100 flex items-center justify-center flex-shrink-0">
-                    <Brain className="w-4 h-4 text-purple-600" />
-                  </div>
+                  <img src="/images/ai-avatar.png" alt="AI" className="w-9 h-9 rounded-full shadow border border-blue-200 flex-shrink-0" />
                   <div className="bg-gray-50 p-4 rounded-xl">
                     <Loader2 className="w-5 h-5 animate-spin text-purple-600" />
                   </div>
