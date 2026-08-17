@@ -601,3 +601,302 @@ export const defaultMarkSchemes: Record<number, { totalMarks: number; duration: 
   7: { totalMarks: 70, duration: 120 },
   8: { totalMarks: 70, duration: 120 },
 };
+
+// ═══════════════════════════════════════════════
+// CLASSES 1-5 (SCERT Kerala Revised 2024-25)
+// ═══════════════════════════════════════════════
+
+// Inject Classes 1-5 into keralaBoardData
+const classes1to5: ClassData[] = [
+  {
+    number: 1, name: "Class 1", description: "First Standard – Kerala SCERT (2024-25)",
+    subjects: [
+      { name: "English", nameMl: "ഇംഗ്ലീഷ്", code: "ENG", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Hello", titleMl: "ഹലോ", headings: ["Greetings"] },
+          { chapterNumber: 2, title: "After a Bath", titleMl: "കുളിക്കുശേഷം", headings: ["Actions", "Daily Routine"] },
+          { chapterNumber: 3, title: "One Little Finger", titleMl: "ഒരു ചെറിയ വിരൽ", headings: ["Body Parts"] },
+          { chapterNumber: 4, title: "I Am Lucky", titleMl: "ഞാൻ ഭാഗ്യവാൻ", headings: ["Feelings"] },
+          { chapterNumber: 5, title: "A Happy Child", titleMl: "ഒരു സന്തോഷമുള്ള കുട്ടി", headings: ["Daily Activities"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "In the Class", titleMl: "ക്ലാസ്സിൽ", headings: ["Classroom"] },
+          { chapterNumber: 2, title: "I Can Do This", titleMl: "ഞാൻ ഇത് ചെയ്യാൻ പറ്റും", headings: ["Abilities"] },
+          { chapterNumber: 3, title: "Where Is It?", titleMl: "അത് എവിടെ?", headings: ["Prepositions"] },
+          { chapterNumber: 4, title: "Curly Hair", titleMl: "കുറുകുറുത്ത മുടി", headings: ["Describing People"] },
+          { chapterNumber: 5, title: "My Family", titleMl: "എന്റെ കുടുംബം", headings: ["Family"] },
+        ]},
+      ]},
+      { name: "Malayalam", nameMl: "മലയാളം", code: "ML", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "നമസ്കാരം", titleMl: "നമസ്കാരം", headings: ["അക്ഷരങ്ങൾ"] },
+          { chapterNumber: 2, title: "വീട്", titleMl: "വീട്", headings: ["കുടുംബം"] },
+          { chapterNumber: 3, title: "പൂക്കൾ", titleMl: "പൂക്കൾ", headings: ["നിറുകൾ"] },
+          { chapterNumber: 4, title: "മൃഗങ്ങൾ", titleMl: "മൃഗങ്ങൾ", headings: ["വീട്ടുമൃഗങ്ങൾ"] },
+          { chapterNumber: 5, title: "ഫലങ്ങൾ", titleMl: "ഫലങ്ങൾ", headings: ["പഴങ്ങൾ"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "കഥകൾ", titleMl: "കഥകൾ", headings: ["നീതികഥകൾ"] },
+          { chapterNumber: 2, title: "കവിതകൾ", titleMl: "കവിതകൾ", headings: ["ബാലകവിതകൾ"] },
+          { chapterNumber: 3, title: "എണ്ണപ്പാട്ട്", titleMl: "എണ്ണപ്പാട്ട്", headings: ["എണ്ണം"] },
+          { chapterNumber: 4, title: "തൊഴിലുകൾ", titleMl: "തൊഴിലുകൾ", headings: ["തൊഴിലുകൾ"] },
+          { chapterNumber: 5, title: "ഹരിതഗ്രാമം", titleMl: "ഹരിതഗ്രാമം", headings: ["പരിസര സംരക്ഷണം"] },
+        ]},
+      ]},
+      { name: "Mathematics", nameMl: "ഗണിതം", code: "MATH", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Numbers up to 20", titleMl: "20 വരെയുള്ള സംഖ്യകൾ", headings: ["Counting"] },
+          { chapterNumber: 2, title: "Addition", titleMl: "തുകകൂട്ടൽ", headings: ["Single Digit"] },
+          { chapterNumber: 3, title: "Subtraction", titleMl: "കിഴിക്കൽ", headings: ["Single Digit"] },
+          { chapterNumber: 4, title: "Measurement", titleMl: "അളക്കൽ", headings: ["Length", "Weight"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Numbers up to 100", titleMl: "100 വരെ സംഖ്യകൾ", headings: ["Place Value"] },
+          { chapterNumber: 2, title: "Shapes", titleMl: "രൂപങ്ങൾ", headings: ["Circle", "Triangle"] },
+          { chapterNumber: 3, title: "Patterns", titleMl: "രൂപങ്ങൾ", headings: ["Number Patterns"] },
+          { chapterNumber: 4, title: "Time", titleMl: "സമയം", headings: ["Days", "Months"] },
+        ]},
+      ]},
+    ],
+  },
+  {
+    number: 2, name: "Class 2", description: "Second Standard – Kerala SCERT (2024-25)",
+    subjects: [
+      { name: "English", nameMl: "ഇംഗ്ലീഷ്", code: "ENG", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "First Day at School", titleMl: "സ്കൂളിലെ ആദ്യ ദിവസം", headings: ["School Life"] },
+          { chapterNumber: 2, title: "I Am Lucky", titleMl: "ഞാൻ ഭാഗ്യവാൻ", headings: ["Poem"] },
+          { chapterNumber: 3, title: "A Gift of a Librarian", titleMl: "ലൈബ്രേറിയന്റെ സമ്മാനം", headings: ["Reading"] },
+          { chapterNumber: 4, title: "Our Homes", titleMl: "നമ്മുടെ വീടുകൾ", headings: ["Houses"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "The Searching Kid", titleMl: "തിരയുന്ന കുട്ടി", headings: ["Curiosity"] },
+          { chapterNumber: 2, title: "Rain in Town", titleMl: "നഗരത്തിൽ മഴ", headings: ["Weather"] },
+          { chapterNumber: 3, title: "My Sweet Orange Tree", titleMl: "മധുര ഓറഞ്ച് മരം", headings: ["Trees"] },
+          { chapterNumber: 4, title: "My Brother", titleMl: "എന്റെ സഹോദരൻ", headings: ["Family"] },
+        ]},
+      ]},
+      { name: "Malayalam", nameMl: "മലയാളം", code: "ML", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "മഴ", titleMl: "മഴ", headings: ["മഴക്കാലം"] },
+          { chapterNumber: 2, title: "കളികൾ", titleMl: "കളികൾ", headings: ["കുട്ടികളുടെ കളികൾ"] },
+          { chapterNumber: 3, title: "മൃഗങ്ങൾ", titleMl: "മൃഗങ്ങൾ", headings: ["മൃഗങ്ങളുടെ ശബ്ദം"] },
+          { chapterNumber: 4, title: "പാട്ടുകൾ", titleMl: "പാട്ടുകൾ", headings: ["ലാലിപാട്ടുകൾ"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "പ്രകൃതി", titleMl: "പ്രകൃതി", headings: ["പ്രകൃതി സൗന്ദര്യം"] },
+          { chapterNumber: 2, title: "നാടൻ കഥകൾ", titleMl: "നാടൻ കഥകൾ", headings: ["ജനകീയ കഥകൾ"] },
+          { chapterNumber: 3, title: "ചിത്രരചന", titleMl: "ചിത്രരചന", headings: ["ചിത്രങ്ങൾ വരയ്ക്കൽ"] },
+          { chapterNumber: 4, title: "കത്തുകൾ", titleMl: "കത്തുകൾ", headings: ["ലഘുകത്തുകൾ"] },
+        ]},
+      ]},
+      { name: "Mathematics", nameMl: "ഗണിതം", code: "MATH", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Numbers up to 999", titleMl: "999 വരെ സംഖ്യകൾ", headings: ["Place Value"] },
+          { chapterNumber: 2, title: "Addition and Subtraction", titleMl: "തുകകൂട്ടലും കിഴിക്കലും", headings: ["Two Digit"] },
+          { chapterNumber: 3, title: "Multiplication", titleMl: "ഗുണനം", headings: ["Tables"] },
+          { chapterNumber: 4, title: "Measurement", titleMl: "അളക്കൽ", headings: ["Metres", "Kg"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Fractions", titleMl: "ഭിന്നങ്ങൾ", headings: ["Halves"] },
+          { chapterNumber: 2, title: "Time and Money", titleMl: "സമയവും പണവും", headings: ["Clock"] },
+          { chapterNumber: 3, title: "Data Handling", titleMl: "ഡാറ്റ കൈകാര്യം", headings: ["Tally Marks"] },
+          { chapterNumber: 4, title: "Patterns and Shapes", titleMl: "രൂപങ്ങളും ചിഹ്നങ്ങളും", headings: ["Symmetry"] },
+        ]},
+      ]},
+    ],
+  },
+  {
+    number: 3, name: "Class 3", description: "Third Standard – Kerala SCERT (2024-25)",
+    subjects: [
+      { name: "English", nameMl: "ഇംഗ്ലീഷ്", code: "ENG", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "What a Lesson!", titleMl: "എന്തൊരു പാഠം!", headings: ["Classroom"] },
+          { chapterNumber: 2, title: "The Enormous Turnip", titleMl: "വലിയ മുള്ളങ്കി", headings: ["Cooperation"] },
+          { chapterNumber: 3, title: "Puppet Show", titleMl: "പാപ്പറ്റ് ഷോ", headings: ["Drama"] },
+          { chapterNumber: 4, title: "At the Library", titleMl: "ലൈബ്രറിയിൽ", headings: ["Reading"] },
+          { chapterNumber: 5, title: "The Secret Garden", titleMl: "രഹസ്യ പൂന്തോട്ടം", headings: ["Nature"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "The Naughty Goat", titleMl: "കുസൃതി ആട്", headings: ["Animal Story"] },
+          { chapterNumber: 2, title: "The Monster", titleMl: "രാക്ഷസൻ", headings: ["Fantasy"] },
+          { chapterNumber: 3, title: "Magic Garden", titleMl: "മാന്ത്രിക തോട്ടം", headings: ["Poetry"] },
+          { chapterNumber: 4, title: "A Journey by Train", titleMl: "ട്രെയിനിൽ യാത്ര", headings: ["Travel"] },
+        ]},
+      ]},
+      { name: "Malayalam", nameMl: "മലയാളം", code: "ML", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "സ്കൂൾ", titleMl: "സ്കൂൾ", headings: ["വിദ്യാഭ്യാസം"] },
+          { chapterNumber: 2, title: "മഴവെളളം", titleMl: "മഴവെളളം", headings: ["ജലസംരക്ഷണം"] },
+          { chapterNumber: 3, title: "പക്ഷികൾ", titleMl: "പക്ഷികൾ", headings: ["നാട്ടുപക്ഷികൾ"] },
+          { chapterNumber: 4, title: "കഥകൾ", titleMl: "കഥകൾ", headings: ["നീതികഥകൾ"] },
+          { chapterNumber: 5, title: "ഹരിതാലയം", titleMl: "ഹരിതാലയം", headings: ["പച്ചപ്പ്"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "കലകൾ", titleMl: "കലകൾ", headings: ["നൃത്തം", "സംഗീതം"] },
+          { chapterNumber: 2, title: "യാത്രകൾ", titleMl: "യാത്രകൾ", headings: ["യാത്രാവിവരണം"] },
+          { chapterNumber: 3, title: "ഉപ്പും മുളകും", titleMl: "ഉപ്പും മുളകും", headings: ["പാചകം"] },
+          { chapterNumber: 4, title: "കവിതകൾ", titleMl: "കവിതകൾ", headings: ["ബാലകവിതകൾ"] },
+        ]},
+      ]},
+      { name: "Mathematics", nameMl: "ഗണിതം", code: "MATH", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Addition and Subtraction", titleMl: "തുകകൂട്ടലും കിഴിക്കലും", headings: ["3 Digit"] },
+          { chapterNumber: 2, title: "Multiplication", titleMl: "ഗുണനം", headings: ["Tables"] },
+          { chapterNumber: 3, title: "Division", titleMl: "ഭാഗഹരം", headings: ["Equal Sharing"] },
+          { chapterNumber: 4, title: "Measurement", titleMl: "അളക്കൽ", headings: ["Length", "Mass"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Shapes", titleMl: "രൂപങ്ങൾ", headings: ["2D", "3D"] },
+          { chapterNumber: 2, title: "Data Handling", titleMl: "ഡാറ്റ കൈകാര്യം", headings: ["Bar Graphs"] },
+          { chapterNumber: 3, title: "Fractions", titleMl: "ഭിന്നങ്ങൾ", headings: ["Halves", "Quarters"] },
+          { chapterNumber: 4, title: "Time", titleMl: "സമയം", headings: ["Clock", "Calendar"] },
+        ]},
+      ]},
+      { name: "Environmental Studies", nameMl: "പരിസരപഠനം", code: "EVS", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Our Neighbourhood", titleMl: "നമ്മുടെ അയൽപക്കം", headings: ["Community"] },
+          { chapterNumber: 2, title: "Plants Around Us", titleMl: "സസ്യങ്ങൾ", headings: ["Types of Plants"] },
+          { chapterNumber: 3, title: "Water", titleMl: "ജലം", headings: ["Sources"] },
+          { chapterNumber: 4, title: "Our Food", titleMl: "നമ്മുടെ ഭക്ഷണം", headings: ["Food Groups"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Animal Kingdom", titleMl: "മൃഗലോകം", headings: ["Domestic", "Wild"] },
+          { chapterNumber: 2, title: "Our Body", titleMl: "നമ്മുടെ ശരീരം", headings: ["Body Parts"] },
+          { chapterNumber: 3, title: "Seasons", titleMl: "ഋതുക്കൾ", headings: ["Monsoon"] },
+          { chapterNumber: 4, title: "Festivals", titleMl: "ഉത്സവങ്ങൾ", headings: ["Onam", "Vishu"] },
+        ]},
+      ]},
+    ],
+  },
+  {
+    number: 4, name: "Class 4", description: "Fourth Standard – Kerala SCERT (2024-25)",
+    subjects: [
+      { name: "English", nameMl: "ഇംഗ്ലീഷ്", code: "ENG", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Fun with Learning", titleMl: "പഠനത്തിലെ രസം", headings: ["Learning Methods"] },
+          { chapterNumber: 2, title: "The Magic Porridge Pot", titleMl: "മാന്ത്രിക കഞ്ഞി കലം", headings: ["Fairy Tale"] },
+          { chapterNumber: 3, title: "Martha", titleMl: "മാർത്ത", headings: ["Story"] },
+          { chapterNumber: 4, title: "The Wooden Horse", titleMl: "മര കുതിര", headings: ["Craft"] },
+          { chapterNumber: 5, title: "All Things Bright and Beautiful", titleMl: "സകല സുന്ദര വസ്തുക്കളും", headings: ["Poetry"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "The Blue Bird", titleMl: "നീല പക്ഷി", headings: ["Story"] },
+          { chapterNumber: 2, title: "Dr. Ambedkar", titleMl: "ഡോ. അംബേദ്കർ", headings: ["Biography"] },
+          { chapterNumber: 3, title: "The Shoemaker and the Elves", titleMl: "ചെരുപ്പുകുത്തനും എൽവുകളും", headings: ["Fairy Tale"] },
+          { chapterNumber: 4, title: "My Dream", titleMl: "എന്റെ സ്വപ്നം", headings: ["Poetry"] },
+        ]},
+      ]},
+      { name: "Malayalam", nameMl: "മലയാളം", code: "ML", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "മഴ", titleMl: "മഴ", headings: ["കവിത"] },
+          { chapterNumber: 2, title: "ശുഭ്രപൂർണ്ണിമ", titleMl: "ശുഭ്രപൂർണ്ണിമ", headings: ["നിലാവ്"] },
+          { chapterNumber: 3, title: "നന്മയുടെ വഴി", titleMl: "നന്മയുടെ വഴി", headings: ["നീതി"] },
+          { chapterNumber: 4, title: "കായൽത്തീരത്ത്", titleMl: "കായൽത്തീരത്ത്", headings: ["കായൽ"] },
+          { chapterNumber: 5, title: "വിശേഷണം", titleMl: "വിശേഷണം", headings: ["വ്യാകരണം"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "യാത്ര", titleMl: "യാത്ര", headings: ["യാത്രാവിവരണം"] },
+          { chapterNumber: 2, title: "കുഞ്ഞുകൂട്ട്", titleMl: "കുഞ്ഞുകൂട്ട്", headings: ["കുട്ടികൾ"] },
+          { chapterNumber: 3, title: "ജലയോഗം", titleMl: "ജലയോഗം", headings: ["നീന്തൽ"] },
+          { chapterNumber: 4, title: "ഓണം", titleMl: "ഓണം", headings: ["ഓണ ആഘോഷം"] },
+        ]},
+      ]},
+      { name: "Mathematics", nameMl: "ഗണിതം", code: "MATH", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Large Numbers", titleMl: "വലിയ സംഖ്യകൾ", headings: ["Thousands"] },
+          { chapterNumber: 2, title: "Addition and Subtraction", titleMl: "തുകകൂട്ടലും കിഴിക്കലും", headings: ["4 Digit"] },
+          { chapterNumber: 3, title: "Multiplication", titleMl: "ഗുണനം", headings: ["2 Digit"] },
+          { chapterNumber: 4, title: "Division", titleMl: "ഭാഗഹരം", headings: ["Long Division"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Fractions and Decimals", titleMl: "ഭിന്നങ്ങളും ദശമലങ്ങളും", headings: ["Equivalent"] },
+          { chapterNumber: 2, title: "Money and Time", titleMl: "പണവും സമയവും", headings: ["Currency"] },
+          { chapterNumber: 3, title: "Measurement", titleMl: "അളക്കൽ", headings: ["Perimeter", "Area"] },
+          { chapterNumber: 4, title: "Geometry", titleMl: "ജ്യാമിതി", headings: ["Angles"] },
+        ]},
+      ]},
+      { name: "Environmental Studies", nameMl: "പരിസരപഠനം", code: "EVS", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Our Village", titleMl: "നമ്മുടെ ഗ്രാമം", headings: ["Village Life"] },
+          { chapterNumber: 2, title: "Clothes We Wear", titleMl: "വസ്ത്രങ്ങൾ", headings: ["Fabrics"] },
+          { chapterNumber: 3, title: "Things We Make and Do", titleMl: "നമ്മൾ ഉണ്ടാക്കുന്നതും", headings: ["Crafts"] },
+          { chapterNumber: 4, title: "Services We Use", titleMl: "സേവനങ്ങൾ", headings: ["Public Services"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Our Earth", titleMl: "നമ്മുടെ ഭൂമി", headings: ["Continents"] },
+          { chapterNumber: 2, title: "The World Around Us", titleMl: "നമുക്ക് ചുറ്റുമുള്ള ലോകം", headings: ["Environment"] },
+          { chapterNumber: 3, title: "Sharing Our Planet", titleMl: "ഗ്രഹം പങ്കിടുന്നു", headings: ["Wildlife"] },
+          { chapterNumber: 4, title: "Travel and Tourism", titleMl: "യാത്രയും ടൂറിസവും", headings: ["Tourism"] },
+        ]},
+      ]},
+    ],
+  },
+  {
+    number: 5, name: "Class 5", description: "Fifth Standard – Kerala SCERT (2024-25)",
+    subjects: [
+      { name: "English", nameMl: "ഇംഗ്ലീഷ്", code: "ENG", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "The Twins", titleMl: "ഇരട്ടകൾ", headings: ["Identity"] },
+          { chapterNumber: 2, title: "Crying in the Chapel", titleMl: "ചാപ്പലിൽ കരയുന്നു", headings: ["Poetry"] },
+          { chapterNumber: 3, title: "Don Quixote", titleMl: "ഡോൺ ക്വിക്സോട്ട്", headings: ["Adventure"] },
+          { chapterNumber: 4, title: "My Brother's Special Trousers", titleMl: "പ്രത്യേക പാന്റ്സ്", headings: ["Humour"] },
+          { chapterNumber: 5, title: "My Country", titleMl: "എന്റെ രാജ്യം", headings: ["Patriotism"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "The Old Man and the Market", titleMl: "വൃദ്ധനും മാർക്കറ്റും", headings: ["Wisdom"] },
+          { chapterNumber: 2, title: "Saving the Children", titleMl: "കുട്ടികളെ രക്ഷിക്കുന്നു", headings: ["Social Reform"] },
+          { chapterNumber: 3, title: "The Proud Street Dog", titleMl: "അഹങ്കാരി നായ", headings: ["Fable"] },
+          { chapterNumber: 4, title: "Trees", titleMl: "മരങ്ങൾ", headings: ["Environment"] },
+          { chapterNumber: 5, title: "A Great Inventor", titleMl: "മഹാൻ ആവിഷ്കാരകൻ", headings: ["Edison"] },
+        ]},
+      ]},
+      { name: "Malayalam", nameMl: "മലയാളം", code: "ML", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "ജൈവവൈവിധ്യം", titleMl: "ജൈവവൈവിധ്യം", headings: ["പ്രകൃതി"] },
+          { chapterNumber: 2, title: "നീലക്കുയിൽ", titleMl: "നീലക്കുയിൽ", headings: ["കവിത"] },
+          { chapterNumber: 3, title: "മരുഭൂമി", titleMl: "മരുഭൂമി", headings: ["മരുപ്രദേശം"] },
+          { chapterNumber: 4, title: "നാടൻ പാട്ടുകൾ", titleMl: "നാടൻ പാട്ടുകൾ", headings: ["ലോകഗാനങ്ങൾ"] },
+          { chapterNumber: 5, title: "ഭാവന", titleMl: "ഭാവന", headings: ["കഥ"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "ജീവിതഗന്ധം", titleMl: "ജീവിതഗന്ധം", headings: ["ജീവിതാനുഭവം"] },
+          { chapterNumber: 2, title: "കവിതകൾ", titleMl: "കവിതകൾ", headings: ["ഖണ്ഡകവിതകൾ"] },
+          { chapterNumber: 3, title: "സംഭാഷണം", titleMl: "സംഭാഷണം", headings: ["രചന"] },
+          { chapterNumber: 4, title: "വ്യാകരണം", titleMl: "വ്യാകരണം", headings: ["വിഭക്തി"] },
+        ]},
+      ]},
+      { name: "Mathematics", nameMl: "ഗണിതം", code: "MATH", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Knowing Our Numbers", titleMl: "നമ്മുടെ സംഖ്യകൾ", headings: ["Large Numbers"] },
+          { chapterNumber: 2, title: "Whole Numbers", titleMl: "പൂർണ്ണ സംഖ്യകൾ", headings: ["Number Line"] },
+          { chapterNumber: 3, title: "Playing with Numbers", titleMl: "സംഖ്യാ കളികൾ", headings: ["Factors", "Multiples"] },
+          { chapterNumber: 4, title: "Basic Geometrical Ideas", titleMl: "ജ്യാമിതി", headings: ["Points", "Lines"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Fractions", titleMl: "ഭിന്നങ്ങൾ", headings: ["Proper", "Improper"] },
+          { chapterNumber: 2, title: "Decimals", titleMl: "ദശമലങ്ങൾ", headings: ["Place Value"] },
+          { chapterNumber: 3, title: "Data Handling", titleMl: "ഡാറ്റ കൈകാര്യം", headings: ["Bar Graph"] },
+          { chapterNumber: 4, title: "Measurements", titleMl: "അളക്കലുകൾ", headings: ["Length", "Weight"] },
+        ]},
+      ]},
+      { name: "Environmental Studies", nameMl: "പരിസരപഠനം", code: "EVS", sourceUrl: S, parts: [
+        { partNumber: 1, title: "Term 1", titleMl: "ഒന്നാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Knowing Our Surroundings", titleMl: "നമ്മുടെ ചുറ്റുപാട്", headings: ["Map Reading"] },
+          { chapterNumber: 2, title: "Human Body and Health", titleMl: "ശരീരവും ആരോഗ്യവും", headings: ["Organ Systems"] },
+          { chapterNumber: 3, title: "Our Country - India", titleMl: "നമ്മുടെ രാജ്യം", headings: ["States"] },
+          { chapterNumber: 4, title: "Food and Nutrition", titleMl: "ഭക്ഷണവും പോഷണവും", headings: ["Balanced Diet"] },
+        ]},
+        { partNumber: 2, title: "Term 2", titleMl: "രണ്ടാം ടേം", chapters: [
+          { chapterNumber: 1, title: "Shelter", titleMl: "ഭവനം", headings: ["Types"] },
+          { chapterNumber: 2, title: "Water", titleMl: "ജലം", headings: ["Water Cycle"] },
+          { chapterNumber: 3, title: "Waste Management", titleMl: "മാലിന്യ സംസ്കരണം", headings: ["Recycling"] },
+          { chapterNumber: 4, title: "Natural Resources", titleMl: "പ്രകൃതിവിഭവങ്ങൾ", headings: ["Forests"] },
+        ]},
+      ]},
+    ],
+  },
+];
+
+// Prepend Classes 1-5 to the main array
+keralaBoardData.unshift(...classes1to5);
